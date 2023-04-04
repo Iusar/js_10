@@ -4,14 +4,14 @@ const taskList = document.getElementById("tasks__list");
 
 taskForm.addEventListener("submit", event => {
 
-    if (taskText.value) {
+    if (taskText.value.trim()) {
         let newDivElement = document.createElement('div');
             newDivElement.className = "task"
             newDivElement.innerHTML = `<div class="task__title">${taskText.value}</div>
                                         <a href="#" class="task__remove">&times;</a>`
         taskList.append(newDivElement)
-        taskText.value = ''
     }
+    taskText.value = ''
     event.preventDefault() 
 })
 

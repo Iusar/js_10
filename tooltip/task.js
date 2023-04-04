@@ -6,19 +6,18 @@ toolTips.forEach(hintToOpen => {
 
             hintToClose = document.querySelector('.tooltip_active')
 
-            if (hintToClose != null) {
-                hintToClose.remove()
-            }
-            
+            if (hintToOpen.nextSibling.className != 'tooltip tooltip_active' || hintToClose === null){
             let newDiv = document.createElement('div')
 
                 newDiv.classList.add('tooltip')
                 newDiv.classList.add('tooltip_active')
                 newDiv.setAttribute('style', `left: ${Math.round(hintToOpen.getBoundingClientRect().left)}px; top: ${Math.round(hintToOpen.getBoundingClientRect().bottom)}px`)
-                newDiv.innerHTML = hintToOpen.getAttribute('title')
+                newDiv.textContent  = hintToOpen.getAttribute('title')
 
-                hintToOpen.append(newDiv);       
-
+                hintToOpen.after(newDiv);   
+            }else{
+                hintToOpen.nextSibling.remove();
+            }
             event.preventDefault();
     })
 })
